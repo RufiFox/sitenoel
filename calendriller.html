@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendrier</title>
+    <style>
+        body {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            text-align: center;
+            margin: 50px;
+            background-color: #f7f7f7; /* Couleur de fond bleu clair */
+        }
+
+        #calendar {
+            display: inline-block;
+            border: 1px solid #ccc;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            background-color: #fff; /* Couleur de fond blanche */
+            margin-bottom: 20px;
+        }
+
+        #header {
+            background-color: #e74c3c; /* Rouge foncé pour le thème de Noël */
+            color: white;
+            padding: 10px;
+            position: relative;
+        }
+
+        #days {
+            display: flex;
+            flex-wrap: wrap;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .day {
+            width: 14.28%;
+            padding: 10px;
+            box-sizing: border-box;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            border-bottom: 1px solid #ccc;
+            border-right: 1px solid #ccc;
+            position: relative;
+            text-align: center;
+        }
+
+        .day:last-child {
+            border-bottom: none;
+        }
+
+        .today {
+            background-color: #ffeeba; /* Jaune clair pour le thème de Noël */
+        }
+
+        .day-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #e74c3c; /* Rouge foncé pour le thème de Noël */
+        }
+
+        #datetime {
+            font-size: 20px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div id="calendar">
+    <div id="header"></div>
+    <ul id="days"></ul>
+</div>
+
+<div id="datetime"></div>
+
+<script>
+    // Récupérer les éléments DOM
+    const header = document.getElementById('header');
+    const daysList = document.getElementById('days');
+    const datetime = document.getElementById('datetime');
+
+    // Fonction pour mettre à jour le calendrier
+    function updateCalendar() {
+        const currentDate = new Date();
+        const currentMonth = currentDate.getMonth();
+        const currentYear = currentDate.getFullYear();
+        const currentDay = currentDate.getDate();
+        const currentHour = currentDate.getHours();
+        const currentMinute = currentDate.getMinutes().toString().padStart(2, '0');
+
+        const firstDay = new Date(currentYear, currentMonth, 1);
+        const lastDay = new Date(currentYear, currentMonth + 1, 0);
+
+        // Effacer la liste des jours
+        daysList.innerHTML = '';
+
+        // Ajouter les jours vides avant le premier jour du mois
+        for (let i = 0; i < firstDay.getDay(); i++) {
+            const emptyDay = document.createElement('li');
+            emptyDay.className = 'day';
+            daysList.appendChild(emptyDay);
+        }
+
+        // Ajouter les jours du mois
+        for (let i = 1; i <= lastDay.getDate(); i++) {
+            const day = document.createElement('li');
+            day.className = 'day';
+            day.innerHTML = `<div class="day-content">${i}</div>`;
+
+            // Mettre en surbrillance le jour actuel
+            if (currentYear === currentDate.getFullYear() && currentMonth === currentDate.getMonth() && i === currentDay) {
+                day.classList.add('today');
+            }
+
+            // Ajouter un événement de clic pour afficher la date sélectionnée
+            day.addEventListener('click', () => {
+                if (currentMonth === 11 && i === 25) {
+                    alert(`Joyeux Noël !\nDate sélectionnée: ${i}/${currentMonth + 1}/${currentYear} ${currentHour}:${currentMinute}`);
+                } else {
+                    alert(`Date sélectionnée: ${i}/${currentMonth + 1}/${currentYear} ${currentHour}:${currentMinute}`);
+                }
+            });
+
+            daysList.appendChild(day);
+        }
+
+        // Mettre à jour l'en-tête avec la date actuelle
+        updateHeader(currentDate);
+
+        // Mettre à jour l'heure et les minutes
+        updateDatetime(currentDate);
+    }
+
+    // Fonction pour mettre à jour l'en-tête avec la date actuelle
+    function updateHeader(currentDate) {
+        const currentMonth = currentDate.getMonth();
+        const currentYear = currentDate.getFullYear();
+        const currentDay = currentDate.getDate();
+
+        // Renommer le calendrier en "Calendrier de l'Avent" uniquement en décembre
+        if (currentMonth === 11) {
+            if (currentDay === 25) {
+                header.textContent = "Joyeux Noël !";
+            } else {
+                header.textContent = `Calendrier de l'Avent - ${currentDay}/${currentMonth + 1}/${currentYear}`;
+            }
+        } else {
+            header.textContent = `${currentDay}/${currentMonth + 1}/${currentYear}`;
+        }
+    }
+
+    // Fonction pour mettre à jour l'heure et les minutes
+    function updateDatetime(currentDate) {
+        const currentHour = currentDate.getHours();
+        const currentMinute = currentDate.getMinutes().toString().padStart(2, '0');
+
+        datetime.textContent = `${currentHour}:${currentMinute}`;
+    }
+
+    // Mettre à jour le calendrier initialement
+    updateCalendar();
+
+    // Rafraîchir la page chaque seconde
+    setInterval(updateCalendar, 1000);
+</script>
+
+</body>
+</html>

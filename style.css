@@ -1,0 +1,142 @@
+/* Conteneur du calendrier */
+#calendar {
+    margin: 20px auto;
+    max-width: 600px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+/* En-tête du calendrier */
+#header {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 15px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+/* Ligne des jours de la semaine */
+#weekdays {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    list-style: none;
+    padding: 10px 0;
+    margin: 0;
+    background-color: #f4f4f4;
+    text-align: center;
+    font-weight: bold;
+    border-bottom: 2px solid #ddd;
+}
+
+#weekdays li {
+    color: #444;
+    text-transform: capitalize;
+}
+
+/* Ligne des jours du mois */
+#days {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+}
+
+/* Style des cases des jours */
+.day {
+    padding: 15px 0;
+    color: #333;
+    border: 1px solid #eee;
+    cursor: pointer;
+}
+
+.day:hover {
+    background-color: #f0f0f0;
+}
+
+.today {
+    background-color: #ffda79;
+    font-weight: bold;
+    border: 1px solid #ffa502;
+}
+
+.empty {
+    background-color: #f7f7f7;
+    cursor: default;
+}
+/* Conteneur du calendrier */
+#calendar {
+    margin: 20px auto;
+    max-width: 600px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+/* En-tête du calendrier */
+#header {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 15px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+/* Ligne des jours de la semaine */
+#weekdays {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    list-style: none;
+    padding: 10px 0;
+    margin: 0;
+    background-color: #f4f4f4;
+    text-align: center;
+    font-weight: bold;
+    border-bottom: 2px solid #ddd;
+}
+
+#weekdays li {
+    color: #444;
+    text-transform: capitalize;
+}
+
+/* Ligne des jours du mois */
+#days {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+}
+
+/* Style des cases des jours */
+.day {
+    padding: 15px 0;
+    color: #333;
+    border: 1px solid #eee;
+    cursor: pointer;
+}
+
+.day:hover {
+    background-color: #f0f0f0;
+}
+
+.today {
+    background-color: #ffda79;
+    font-weight: bold;
+    border: 1px solid #ffa502;
+}
+
+.empty {
+    background-color: #f7f7f7;
+    cursor: default;
+}
